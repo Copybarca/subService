@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name="dish",schema = "calories",catalog = "caloriesManager")
 public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +22,9 @@ public class Dish {
     private int fats;
     @Column
     private int carbohydrates;
+    @Deprecated
+    public Dish() {
+    }
 
 
 

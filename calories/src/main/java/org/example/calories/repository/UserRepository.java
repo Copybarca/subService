@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface UserRepository extends Repository<User,Integer> {
     User save(User user);
     Optional<User> findById(int id);
-    List<Optional<User>> index();
+    List<User> findAllBy();
 }

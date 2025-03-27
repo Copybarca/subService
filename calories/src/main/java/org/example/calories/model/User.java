@@ -4,14 +4,16 @@ import jakarta.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Getter
 @Setter
+@Table(name="user",schema = "calories",catalog = "caloriesManager")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private int id;
     @Column()
     private String name;
@@ -31,6 +33,7 @@ public class User {
     @Deprecated
     public User() {
     }
+
     public User(String name, String email, int age, int weight, int height, Target target) {
         this.name = name;
         this.email = email;
