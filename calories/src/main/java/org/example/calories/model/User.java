@@ -2,17 +2,21 @@ package org.example.calories.model;
 
 import jakarta.persistence.*;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name="user",schema = "calories",catalog = "caloriesManager")
+@Component
+@Scope("prototype")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,8 +46,6 @@ public class User {
     /*@OneToMany(fetch = FetchType.LAZY)
     List<MealPlan> mealPlanList;*/
 
-
-
     @Deprecated
     public User() {
     }
@@ -55,6 +57,37 @@ public class User {
         this.weight = weight;
         this.height = height;
         this.target = target;
-        this.calorie_intake = AppliedCalculation.BenedictHarrisCalculation(weight,height,age);
+        int prefix = 0;
+        if(target!=Target.KEEPING){
+            prefix += target==Target.WEIGHT_UP? 300:-300;
+        }
+        this.calorie_intake = AppliedCalculation.BenedictHarrisCalculation(weight,height,age)+prefix;
+    }
+    private void restoreCalories(){
+        int prefix = 0;
+        if(target!=Target.KEEPING){
+            prefix += target==Target.WEIGHT_UP? 300:-300;
+        }
+        this.calorie_intake = AppliedCalculation.BenedictHarrisCalculation(weight,height,age)+prefix;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+        restoreCalories();
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+        restoreCalories();
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+        restoreCalories();
+    }
+
+    public void setTarget(Target target) {
+        this.target = target;
+        restoreCalories();
     }
 }

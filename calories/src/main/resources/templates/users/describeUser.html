@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список пользователей</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Список пользователей</h1>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Здесь будет список пользователей -->
+        <tr th:each="user : ${usersList}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.weight}"></td>
+            <td th:text="${user.height}"></td>
+            <td th:text="${user.target}"></td>
+            <td th:text="${user.calorie_intake}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

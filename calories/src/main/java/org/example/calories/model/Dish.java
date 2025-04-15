@@ -1,6 +1,7 @@
 package org.example.calories.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
@@ -8,8 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name="dish",schema = "calories",catalog = "caloriesManager")
 public class Dish {

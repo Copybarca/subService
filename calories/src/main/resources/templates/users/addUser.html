@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать пользователя</title>
+</head>
+<body>
+<h1>Создать пользователя</h1>
+<form action="/users/createUser" method="post">
+    <label for="name">Имя:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="age">Возраст:</label>
+    <input type="number" id="age" name="age" required><br>
+
+    <label for="height">Рост:</label>
+    <input type="number" id="height" name="height" required><br>
+
+    <label for="weight">Вес:</label>
+    <input type="number" id="weight" name="weight" required><br>
+
+    <label for="target">Цель:</label>
+    <input type="text" id="target" name="target" required><br>
+
+    <button type="submit">Создать пользователя</button>
+</form>
+</body>
+</html>
