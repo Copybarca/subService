@@ -28,7 +28,7 @@
         <url/>
     </scm>
     <properties>
-        <java.version>20</java.version>
+        <java.version>17</java.version>
         <start-class>src.main.java.org.example.calories.CaloriesApplication</start-class>
     </properties>
     <dependencies>
