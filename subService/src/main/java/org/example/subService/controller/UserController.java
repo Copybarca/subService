@@ -70,7 +70,7 @@ public class UserController {
         return ResponseEntity.status(201).build();
     }
     @DeleteMapping("/{id}/subscriptions/{sub_id}")
-    public ResponseEntity<Void> deleteSubscription(@PathVariable int sub_id) {
+    public ResponseEntity<Void> deleteSubscription(@PathVariable int sub_id, @PathVariable String id) {
         subscribeService.deleteSubscription(sub_id);
         return ResponseEntity.noContent().build();
     }
