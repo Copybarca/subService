@@ -35,9 +35,6 @@ public class UserService {
             userToUpdate.setName(user.getName());
             userToUpdate.setEmail(user.getEmail());
             userToUpdate.setAge(user.getAge());
-            userToUpdate.setHeight(user.getHeight());
-            userToUpdate.setWeight(user.getWeight());
-            userToUpdate.setTarget(user.getTarget());
             userToUpdate.setAge(user.getAge());
             userRepository.save(userToUpdate);
         }

@@ -31,17 +31,8 @@ public class User {
     @Column()
     @Size(min = 1,max = 4, message = "In range of 1 to 10 characters")
     private int age;
-    @Column()
-    @Size(min = 1,max = 4, message = "In range of 1 to 10 characters")
-    private int weight;
-    @Column()
-    @Size(min = 1,max = 4, message = "In range of 1 to 10 characters")
-    private int height;
-    @Column()
-    @Enumerated(EnumType.STRING)
-    private Target target;
-    @Column
-    private double calorie_intake;
+    @OneToMany
+    private List<Subscribe> subscribeList;
 
     /*@OneToMany(fetch = FetchType.LAZY)
     List<MealPlan> mealPlanList;*/

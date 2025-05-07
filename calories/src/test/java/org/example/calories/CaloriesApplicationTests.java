@@ -1,9 +1,7 @@
 package org.example.calories;
 
 
-import org.example.calories.model.Target;
 import org.example.calories.model.User;
-import org.example.calories.service.DishService;
 import org.example.calories.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

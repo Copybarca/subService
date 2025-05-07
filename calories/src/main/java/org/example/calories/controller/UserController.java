@@ -1,11 +1,12 @@
 package org.example.calories.controller;
 
 
-import org.example.calories.model.Target;
+import org.example.calories.model.Subscribe;
 import org.example.calories.model.User;
+import org.example.calories.service.SubscribeService;
 import org.example.calories.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,16 +20,22 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
+    private final SubscribeService subscribeService;
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, SubscribeService subscribeService) {
         this.userService = userService;
+        this.subscribeService = subscribeService;
     }
 
-    @GetMapping()
-    public String index(Model model) {
-        List<User> users = userService.getUserList();
-        model.addAttribute("usersList", users);
-        return "users/usersList";
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User updatedUser) {
+        try {
+            userService.updateUser(updatedUser, id);
+        } catch (ChangeSetPersister.NotFoundException e) {
+            ResponseEntity.notFound();
+            throw new RuntimeException(e);
+        }
+        return ResponseEntity.ok(updatedUser);
     }
 
     @GetMapping("/{id}")
@@ -36,22 +43,31 @@ public class UserController {
         Optional<User> user = userService.getUserByID(id);
         return ResponseEntity.ok(user);
     }
-    @GetMapping("/createUser")
+    @GetMapping("")
     public String addNewUser() {
         return "users/addUser";
     }
 
-    @PostMapping("/createUser")
-    public String createUser(@RequestParam String name,
-                                           @RequestParam String email,
-                                           @RequestParam int age,
-                                           @RequestParam int height,
-                                           @RequestParam int weight,
-                                           @RequestParam Target target,
-                                           Model model) {
-        User newUser = new User(name, email, age, height, weight, target);
+    @PostMapping("")
+    public ResponseEntity<User> createUser(@RequestBody User newUser) {
         userService.createUser(newUser);
-        return "redirect:users/usersList";
+        return ResponseEntity.status(201).body(newUser);
+    }
+    @GetMapping("/{id}/subscriptions")
+    public String getSubscription( Model model, @PathVariable int id) {
+
+        model.addAttribute("userSubList",userService.getUserByID(id).get().getSubscribeList());
+        return "users/subscriptions";
+    }
+    @PostMapping("/{id}/subscriptions")
+    public ResponseEntity<Subscribe> createSubscription(@PathVariable int id, @RequestBody Subscribe newSubscription) {
+        subscribeService.addSubscribe(id,newSubscription);
+        return ResponseEntity.status(201).build();
+    }
+    @DeleteMapping("/{id}/subscriptions/{sub_id}")
+    public ResponseEntity<Void> deleteSubscription(@PathVariable int id, @PathVariable int sub_id) {
+        subscribeService.deleteSubscription(sub_id);
+        return ResponseEntity.noContent().build();
     }
 
 }
