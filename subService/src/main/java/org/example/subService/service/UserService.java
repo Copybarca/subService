@@ -1,7 +1,7 @@
-package org.example.calories.service;
+package org.example.subService.service;
 
-import org.example.calories.model.User;
-import org.example.calories.repository.UserRepository;
+import org.example.subService.model.User;
+import org.example.subService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,6 @@ public class UserService {
             User userToUpdate = ou.get();
             userToUpdate.setName(user.getName());
             userToUpdate.setEmail(user.getEmail());
-            userToUpdate.setAge(user.getAge());
             userToUpdate.setAge(user.getAge());
             userRepository.save(userToUpdate);
         }

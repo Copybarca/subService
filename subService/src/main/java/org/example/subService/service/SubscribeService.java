@@ -1,13 +1,11 @@
-package org.example.calories.service;
+package org.example.subService.service;
 
-import jakarta.persistence.Column;
-import org.example.calories.model.Subscribe;
-import org.example.calories.repository.SubscribeRepository;
+import org.example.subService.model.Subscribe;
+import org.example.subService.repository.SubscribeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Component

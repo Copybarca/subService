@@ -1,11 +1,8 @@
-package org.example.calories.model;
+package org.example.subService.model;
 
 import jakarta.persistence.*;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +42,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.age = age;
-
     }
 
 

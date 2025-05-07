@@ -1,10 +1,9 @@
-package org.example.calories.controller;
+package org.example.subService.controller;
 
-
-import org.example.calories.model.Subscribe;
-import org.example.calories.model.User;
-import org.example.calories.service.SubscribeService;
-import org.example.calories.service.UserService;
+import org.example.subService.model.Subscribe;
+import org.example.subService.model.User;
+import org.example.subService.service.SubscribeService;
+import org.example.subService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +54,7 @@ public class UserController {
         return ResponseEntity.status(201).body(newUser);
     }
     @GetMapping("/{id}/subscriptions")
-    public String getSubscription( Model model, @PathVariable int id) {
+    public ResponseEntity< List<Subscribe>> getSubscription( Model model, @PathVariable int id) {
         List<Subscribe> subscribeList;
         if(userService.getUserByID(id).isPresent()){
             subscribeList=userService.getUserByID(id).get().getSubscribeList();
@@ -63,7 +62,7 @@ public class UserController {
             subscribeList=new ArrayList<>();
         }
         model.addAttribute("userSubList",subscribeList);
-        return "users/subscriptions";
+        return ResponseEntity.status(201).body(subscribeList);
     }
     @PostMapping("/{id}/subscriptions")
     public ResponseEntity<Subscribe> createSubscription(@PathVariable int id, @RequestBody Subscribe newSubscription) {
@@ -71,7 +70,7 @@ public class UserController {
         return ResponseEntity.status(201).build();
     }
     @DeleteMapping("/{id}/subscriptions/{sub_id}")
-    public ResponseEntity<Void> deleteSubscription(@PathVariable int id, @PathVariable int sub_id) {
+    public ResponseEntity<Void> deleteSubscription(@PathVariable int sub_id) {
         subscribeService.deleteSubscription(sub_id);
         return ResponseEntity.noContent().build();
     }

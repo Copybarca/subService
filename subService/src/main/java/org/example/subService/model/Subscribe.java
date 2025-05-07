@@ -1,7 +1,6 @@
-package org.example.calories.model;
+package org.example.subService.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.sql.Date;
 

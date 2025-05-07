@@ -1,13 +1,13 @@
-package org.example.calories;
+package org.example.subService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CaloriesApplication {
+public class SubServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CaloriesApplication.class, args);
+        SpringApplication.run(SubServiceApplication.class, args);
     }
 
 }

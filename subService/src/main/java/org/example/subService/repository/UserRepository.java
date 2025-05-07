@@ -1,6 +1,6 @@
-package org.example.calories.repository;
+package org.example.subService.repository;
 
-import org.example.calories.model.User;
+import org.example.subService.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 

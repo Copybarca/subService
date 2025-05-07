@@ -1,12 +1,10 @@
-package org.example.calories.controller;
+package org.example.subService.controller;
 
-import org.example.calories.model.Subscribe;
-import org.example.calories.service.SubscribeService;
+import org.example.subService.service.SubscribeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller("/subscriptions")
 public class SubscribeController {
