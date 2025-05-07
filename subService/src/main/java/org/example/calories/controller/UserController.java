@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,8 +56,13 @@ public class UserController {
     }
     @GetMapping("/{id}/subscriptions")
     public String getSubscription( Model model, @PathVariable int id) {
-
-        model.addAttribute("userSubList",userService.getUserByID(id).get().getSubscribeList());
+        List<Subscribe> subscribeList;
+        if(userService.getUserByID(id).isPresent()){
+            subscribeList=userService.getUserByID(id).get().getSubscribeList();
+        }else{
+            subscribeList=new ArrayList<>();
+        }
+        model.addAttribute("userSubList",subscribeList);
         return "users/subscriptions";
     }
     @PostMapping("/{id}/subscriptions")
